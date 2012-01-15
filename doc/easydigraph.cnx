@@ -1,0 +1,94 @@
+*easydigraph.txt*           EasyDigraph      Easier input Chars with digraph
+
+
+     ______                _____  _                       _        ~
+    |  ____|              |  __ \(_)                     | |       ~
+    | |__   __ _ ___ _   _| |  | |_  __ _ _ __ __ _ _ __ | |__     ~
+    |  __| / _` / __| | | | |  | | |/ _` | '__/ _` | '_ \| '_ \    ~
+    | |___| (_| \__ \ |_| | |__| | | (_| | | | (_| | |_) | | | |   ~
+    |______\__,_|___/\__, |_____/|_|\__, |_|  \__,_| .__/|_| |_|   ~
+                      __/ |          __/ |         | |             ~
+                     |___/          |___/          |_|             ~
+
+                          Version: 0.1
+
+==============================================================================
+
+ CONTENTS                               *easydigraph-contents*
+
+ 1. Intro                               |easydigraph-intro|
+ 2. Install                             |easydigraph-install|
+ 3. Option                              |easydigraph-option|
+ 4. Changelog                           |easydigraph-changelog|
+==============================================================================
+INTRO                                               *easydigraph-intro*
+
+    *EasyDigraph* 使得用|:digraph|输入特殊字符更加轻松。
+    
+    一般来说，你需要使用i_<Ctrl-K>来输入二合字母。但是每次输入都需要按键。
+    用EasyDigraph，你可以使用|:EasyDigraph| 加上{motion} 来转换二合字母。
+
+    默认映射为'<leader>bb'
+    可以使用|g:EasyDigraph_nmap|重新定义。
+    默认动作支持'w\b\e\iw\aw\j\k\vj\vk\h\l'
+    
+    例如:
+    <leader>bbaW 在 'a*b*c*d*e*' 上将转化为 Greek 'αβξδε'
+    <leader>bbaw 在 'kakikukeko' 上将转化为 Hiragana 'かきくけこ'
+    <leader>bbaW 在 '(S8S+S3S)S' 上将转化为 SuperScript '⁽⁸⁺³⁾'
+    <leader>bbaW 在 '(s8s+s3s)s' 上将转化为 SubScript '₍₈₊₃₎'
+
+    同时它将自动忽略转化过的字符,
+    意即只会转化ASCII 33～126之间的字符。
+    即，在 'αβξδε' 上按键将不会使其产生变化。
+    
+    同时，还有一个插入模式下的快捷键。
+    它将改变当前的WORD。
+    默认映射为'<c-x><c-b>'
+    可以使用|g:EasyDigraph_imap|重新定义
+    
+    查看 |:digraph| 和 |digraphs-default| 以了解更多。
+
+    有问题请到发布到 https://github.com/Rykka/easydigraph.vim/ 
+    
+==============================================================================
+INSTALL                                             *easydigraph-install*
+    
+    从tar.gz文件中解压缩到vimfiles文件夹。   
+
+    获取最新版本
+    https://github.com/Rykka/easydigraph.vim/
+    
+==============================================================================
+OPTION                                              *easydigraph-option*
+
+    :EasyDigraph                                    *:EasyDigraph*
+    EasyDigraph with motion.
+    默认动作支持 'w\b\e\iw\aw\j\k\vj\vk\h\l'
+    
+    g:EasyDigraph_imap                              *g:EasyDigraph_imap*
+    ':EasyDigraph<CR>aW' 插入模式下的映射
+    默认为 "<c-x><c-b>"
+
+    g:EasyDigraph_nmap                              *g:EasyDigraph_nmap*
+    :EasyDigraph 普通模式下的映射
+    默认为 "<leader>bb"
+    也可通过重定义 ":EasyDigraph"来改变。
+    
+==============================================================================
+CHANGELOG                                           *easydigraph-CHANGELOG*
+    
+    The Script Author is Rykka(Rykka10(at)gmail.com)
+    This Script is under MIT License.
+
+" V 0.1: initial commit
+" FIXED: wrong position with multi words motion
+" FIXED: some char reappended
+" FIXED: even if it's not a whitespace should be change with 'word' motion
+" FIXED: if it's the only word of the line. still wrong pos.
+" FIXED: if have have ' <eol>' after word,
+"        diW will put cursor at the last space not the previous one.
+"        but it's still the last character of line
+" FIXED: deleting the word not in the end will change the cursor pos
+" FIXED: imap only can be used in the end of line
+
